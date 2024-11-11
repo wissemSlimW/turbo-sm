@@ -1,0 +1,19 @@
+{
+  "name": "@feature/feeds",
+  "version": "0.0.0",
+  "dependencies": {
+    "@panel/feeds": "workspace:*",
+    "@repo/api": "workspace:*",
+    "@repo/contexts": "workspace:*",
+    "@repo/utils": "workspace:*",
+    "react-dom": "^18.3.1",
+    "react-jss": "^10.9.0",
+    "react": "^18.3.1"
+  },
+  "devDependencies": {
+    "@repo/eslint-config": "workspace:*",
+    "@repo/types": "workspace:*",
+    "@repo/typescript-config": "workspace:*",
+    "@types/react": "^18.3.3"
+  }
+}

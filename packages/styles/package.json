@@ -1,0 +1,14 @@
+{
+  "name": "@repo/styles",
+  "version": "1.0.0",
+  "dependencies": {
+    "react-jss": "^10.9.0"
+  },
+  "peerDependencies": {},
+  "devDependencies": {
+    "@repo/eslint-config": "workspace:*",
+    "@repo/typescript-config": "workspace:*",
+    "@types/react": "^18.2.0",
+    "tslib": "^2.5.3"
+  }
+}

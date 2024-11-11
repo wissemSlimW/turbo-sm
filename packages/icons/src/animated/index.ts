@@ -1,0 +1,6 @@
+export { ArrowCircleLeft } from './ArrowCircleLeft'
+export { ArrowCircleRight } from './ArrowCircleRight'
+export { Message } from './Message'
+export { Send2 } from './Send2'
+export { ThumbsUp } from './ThumbsUp'
+export { CloseSquare } from './CloseSquare'

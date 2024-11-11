@@ -1,0 +1,29 @@
+{
+  "name": "@panel/feeds",
+  "version": "0.0.0",
+  "dependencies": {
+    "@emotion/styled": "^11.11.5",
+    "@mui/material": "^5.15.15",
+    "@repo/delete-dialog": "workspace:*",
+    "@repo/api": "workspace:*",
+    "@repo/emoji-picker-button": "workspace:*",
+    "@repo/icons": "workspace:*",
+    "@repo/menu-button": "workspace:*",
+    "@repo/scroll-area": "workspace:*",
+    "@repo/styles": "workspace:*",
+    "@repo/upload-zone-layout": "workspace:*",
+    "@repo/user-avatar": "workspace:*",
+    "@repo/utils": "workspace:*",
+    "react-dom": "^18.3.1",
+    "react-jss": "^10.9.0",
+    "react-player": "^2.14.1",
+    "react-responsive-carousel": "^3.2.23",
+    "react": "^18.3.1"
+  },
+  "devDependencies": {
+    "@repo/eslint-config": "workspace:*",
+    "@repo/types": "workspace:*",
+    "@repo/typescript-config": "workspace:*",
+    "@types/react": "^18.3.3"
+  }
+}

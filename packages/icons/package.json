@@ -1,0 +1,22 @@
+{
+  "name": "@repo/icons",
+  "version": "1.0.0",
+  "dependencies": {
+    "react-dom": "^18.2.0",
+    "react-jss": "^10.9.0",
+    "react": "^18.2.0"
+  },
+  "peerDependencies": {},
+  "devDependencies": {
+    "@repo/eslint-config": "workspace:*",
+    "@repo/typescript-config": "workspace:*",
+    "@types/react": "^18.2.0",
+    "tslib": "^2.5.3"
+  },
+  "exports": {
+    "./animated": "./src/animated/index.ts",
+    "./bold": "./src/bold/index.ts",
+    "./featured": "./src/featured/index.ts",
+    "./linear": "./src/linear/index.ts"
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "extends": "@repo/typescript-config/react-library.json",
+  "compilerOptions": {
+    "plugins": [
+      {
+        "name": "React Library"
+      }
+    ],
+    "useDefineForClassFields": true,
+    "module": "ESNext",
+    "moduleResolution": "bundler",
+    "noEmit": true
+  },
+
+  "include": ["**/*.ts", "**/*.tsx", "vite.config.ts", "src", "src/*", "../../packages/contexts/src/seeds"],
+  "exclude": ["node_modules"]
+}

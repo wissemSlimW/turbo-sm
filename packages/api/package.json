@@ -1,0 +1,15 @@
+{
+  "name": "@repo/api",
+  "version": "1.0.0",
+  "dependencies": {
+    "firebase": "^10.13.1",
+    "react-jss": "^10.9.0",
+    "react": "^18.3.1"
+  },
+  "peerDependencies": {},
+  "devDependencies": {
+    "@repo/types": "workspace:*",
+    "@types/react": "^18.2.0",
+    "tslib": "^2.5.3"
+  }
+}
