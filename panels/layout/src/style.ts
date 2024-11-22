@@ -14,7 +14,7 @@ export const useStyle = createUseStyles((theme: Theme) => ({
     display: "flex",
     position: "relative",
     zIndex: 1000,
-    height: 60,
+    height: 56,
   },
   bodyContainer: {
     overflow: "hidden",
@@ -23,10 +23,32 @@ export const useStyle = createUseStyles((theme: Theme) => ({
     flex: 1,
     flexDirection: "column",
   },
-  backgroundLayer: { display: "flex", flex: 1, overflow: "hidden" },
-  startSideBar: { width: "23.5vw" },
-  body: { flex: 1, overflow: "hidden", display: "flex" },
-  endSideBar: { width: "23.5vw" },
+  backgroundLayer: {
+    display: "flex",
+    flex: 1,
+    overflow: "hidden",
+    gap: theme.spacings.xLarge,
+  },
+  startSideBar: {
+    width: "23.5vw",
+    minWidth: 250,
+    maxWidth: 350,
+    display: "flex",
+    flexDirection: "column",
+  },
+  body: {
+    flex: 1,
+    overflow: "hidden",
+    display: "flex",
+    justifyContent: "center",
+  },
+  endSideBar: {
+    width: "23.5vw",
+    minWidth: 250,
+    maxWidth: 350,
+    display: "flex",
+    flexDirection: "column",
+  },
   midLayer: {
     position: "absolute",
     zIndex: 10,
@@ -34,8 +56,8 @@ export const useStyle = createUseStyles((theme: Theme) => ({
     insetInlineEnd: 0,
   },
   "@media (max-width: 1024px)": {
-    endSideBar: {
-      width: "50px",
+    startSideBar: {
+      display: "none",
     },
   },
   "@media (max-width: 700px)": {

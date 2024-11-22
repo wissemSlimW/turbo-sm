@@ -16,10 +16,10 @@ type DeleteRequest = (props: { _id: string; cb: () => void }) => void;
 type CommentMethods<T> = (props: { dataSent: T; cb: () => void }) => void;
 
 export interface ReactionDb {
-  users: { _id: string; firstName: string; lastName: string; imgUrl: string }[];
+  users: AvatarUser[];
 }
 export interface CommentDb {
-  users: { _id: string; firstName: string; lastName: string; imgUrl: string }[];
+  users: AvatarUser[];
 }
 
 export type DataHook<T, Db> = (props: HookParams) => {

@@ -1,0 +1,13 @@
+{
+  "extends": "@repo/typescript-config/feature.json",
+  "compilerOptions": {
+    "plugins": [
+      {
+        "name": "Feature"
+      }
+    ]
+  },
+
+  "include": ["**/*.ts", "**/*.tsx"],
+  "exclude": ["node_modules"]
+}

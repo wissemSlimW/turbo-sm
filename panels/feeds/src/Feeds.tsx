@@ -1,11 +1,11 @@
-import { useMemo, useState } from "react";
+import { useCallback, useMemo, useState } from "react";
 import {
   PostCard,
   Poster,
   PosterPopover,
   PosterPopoverProps,
 } from "./components/index";
-import { Media } from "@repo/types";
+import { Media, Post } from "@repo/types";
 import { useAppTheme } from "@repo/styles";
 import { getItem, joinClassNames } from "@repo/utils";
 import { DICTIONARY } from "./dict";
@@ -48,7 +48,6 @@ export const Feeds = ({
     list: posts,
     ready,
   } = usePostList(useMemo(() => ({ limit }), [limit]));
-  const globalPictures: Media[] = [];
   const PostLoader = () => (
     <span className={classes.loaderWrapper}>
       <span className={classes.loaderHeader}>
@@ -83,21 +82,29 @@ export const Feeds = ({
     if (f.isImage) return "image";
     else return "doc";
   };
+  const handleUpdatePost = (post: Post, media: Media[]) => {
+    const _files = media.filter((p) => p.meta.postId === post._id);
+    // the if fnc determins the default type of display for the poster popover on update mode
+    if (!_files?.[0]) setType("text");
+    else if (getMediaType(_files?.[0]) === "doc") {
+      setType("documents");
+    } else setType("media");
+    setUpdatePostDialog({
+      _id: post._id!,
+      data: {
+        text: post.description,
+        hashtags: [], //TODO,
+        files: _files.map((f) => ({
+          id: f._id,
+          name: f.name,
+          path: f.path,
+          type: getMediaType(f),
+        })),
+      },
+    });
+  };
   return (
     <div className={classes.container}>
-      <Poster actions={{ addPost, updatePost }} user={user} />
-      {!ready && (
-        <span className={classes.loadingContainer}>
-          <PostLoader />
-          <PostLoader />
-        </span>
-      )}
-      {ready && !posts.length && (
-        <div className={classes.emptyMessageCard}>
-          <div>{DICTIONARY.noElement}</div>
-          <div> {DICTIONARY.comeBackLater}</div>
-        </div>
-      )}
       <div className={classes.scrollAreaContainer}>
         <ScrollArea
           hideLoadingComponent={ready && posts.length < limit}
@@ -108,90 +115,84 @@ export const Feeds = ({
           loadingComponent={<PostLoader />}
           maxhieght={"100%"}
         >
-          <span className={classes.postsContainer}>
-            {posts?.map((post) => (
-              <PostCard
-                key={post._id}
-                formatDateDisplay={(date) => {
-                  return date.toDateString();
-                }} // TODO provide a more suitable date formater
-                user={user}
-                media={media.filter((p) => p.meta.postId === post._id)}
-                actions={{
-                  updateComment,
-                  deleteComment: (props) =>
-                    setDeleteDialog({
-                      title: DICTIONARY.deleteComment,
-                      handleConfirm: () => deleteComment(props),
-                    }),
-                  deletePost: (props) =>
-                    setDeleteDialog({
-                      title: DICTIONARY.deletePost,
-                      handleConfirm: () => deletePost(props),
-                    }),
-                  addcomment,
-                  handleClickReaction,
-                  handleUpdatePostClick: () => {
-                    const _files = media.filter(
-                      (p) => p.meta.postId === post._id
-                    );
-                    // the if fnc determins the default type of display for the poster popover on update mode
-                    if (!_files?.[0]) setType("text");
-                    else if (getMediaType(_files?.[0]) === "doc") {
-                      setType("documents");
-                    } else setType("media");
-
-                    setUpdatePostDialog({
-                      _id: post._id!,
-                      data: {
-                        text: post.description,
-                        hashtags: [], //TODO,
-                        files: _files.map((f) => ({
-                          id: f._id,
-                          name: f.name,
-                          path: f.path,
-                          type: getMediaType(f),
-                        })),
-                      },
-                    });
-                  },
-                }}
-                hooks={{
-                  useCommentCount,
-                  useCommentList,
-                  useReactionList,
-                }}
-                postingDate={post.createdAt.toDateString()} // TODO provide a more suitable date formater
-                post={post}
-                postOwner={{
-                  firstName:
-                    getItem({
-                      value: post.createdBy,
-                      list: users,
-                      field: "_id",
-                    })?.firstName || "",
-                  lastName:
-                    getItem({
-                      value: post.createdBy,
-                      list: users,
-                      field: "_id",
-                    })?.lastName || "",
-                  imgUrl:
-                    getItem({
-                      value: post.createdBy,
-                      list: media,
-                      field: "meta.userId",
-                    })?.path || "",
-                }}
-                itemsLoadingParams={{
-                  commentsAtInitialRequest: 2,
-                  commentsPerRequest: 10,
-                  reactionsAtInitialRequest: 5,
-                  reactionsPerRequest: 5,
-                }}
-              />
-            ))}
-          </span>
+          <>
+            <Poster actions={{ addPost, updatePost }} user={user} />
+            {!ready && (
+              <span className={classes.loadingContainer}>
+                <PostLoader />
+                <PostLoader />
+              </span>
+            )}
+            {ready && !posts.length && (
+              <div className={classes.emptyMessageCard}>
+                <div>{DICTIONARY.noElement}</div>
+                <div> {DICTIONARY.comeBackLater}</div>
+              </div>
+            )}
+            <span className={classes.postsContainer}>
+              {posts?.map((post) => (
+                <PostCard
+                  key={post._id}
+                  formatDateDisplay={(date) => {
+                    return date.toDateString();
+                  }} // TODO provide a more suitable date formater
+                  user={user}
+                  media={media.filter((p) => p.meta.postId === post._id)}
+                  actions={{
+                    updateComment,
+                    deleteComment: (props) =>
+                      setDeleteDialog({
+                        title: DICTIONARY.deleteComment,
+                        handleConfirm: () => deleteComment(props),
+                      }),
+                    deletePost: (props) =>
+                      setDeleteDialog({
+                        title: DICTIONARY.deletePost,
+                        handleConfirm: () => deletePost(props),
+                      }),
+                    addcomment,
+                    handleClickReaction,
+                    handleUpdatePostClick: () => {
+                      handleUpdatePost(post, media);
+                    },
+                  }}
+                  hooks={{
+                    useCommentCount,
+                    useCommentList,
+                    useReactionList,
+                  }}
+                  postingDate={post.createdAt?.toDateString() || ""} // TODO provide a more suitable date formater
+                  post={post}
+                  postOwner={{
+                    firstName:
+                      getItem({
+                        value: post.createdBy,
+                        list: users,
+                        field: "_id",
+                      })?.firstName || "",
+                    lastName:
+                      getItem({
+                        value: post.createdBy,
+                        list: users,
+                        field: "_id",
+                      })?.lastName || "",
+                    imgUrl:
+                      getItem({
+                        value: post.createdBy,
+                        list: media,
+                        field: "meta.userId",
+                      })?.path || "",
+                  }}
+                  itemsLoadingParams={{
+                    commentsAtInitialRequest: 2,
+                    commentsPerRequest: 10,
+                    reactionsAtInitialRequest: 5,
+                    reactionsPerRequest: 5,
+                  }}
+                />
+              ))}
+            </span>
+          </>
         </ScrollArea>
       </div>
       {deleteDialog && (
@@ -208,15 +209,7 @@ export const Feeds = ({
           type={type}
           handleClose={() => setUpdatePostDialog(null)}
           data={updatePostDialog.data}
-          user={{
-            ...user,
-            imgUrl:
-              getItem({
-                list: globalPictures,
-                value: user._id,
-                field: "meta.userId",
-              })?.path || "",
-          }}
+          user={user}
           publishAction={(props) =>
             updatePost({
               ...props,

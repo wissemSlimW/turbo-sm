@@ -1,6 +1,6 @@
-import { Media, Post, User } from "@repo/types";
-import { useApi } from "@repo/api";
 import { FeedsPanelProps } from "@panel/feeds";
+import { useApi } from "@repo/api";
+import { Media, Post, User } from "@repo/types";
 import { useMemo } from "react";
 
 /**
@@ -35,6 +35,7 @@ export const usePostList: FeedsPanelProps["hooks"]["usePostList"] = (props) => {
       []
     )
   );
+
   return {
     list,
     attachments: {

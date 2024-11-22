@@ -33,7 +33,13 @@ export const Header = (props: HeaderProps) => {
           ]
         : []),
     ],
-    [classes, props.user._id, props.post.createdBy]
+    [
+      classes,
+      props.user._id,
+      props.post.createdBy,
+      props.updatePost,
+      props.deletePost,
+    ]
   );
   return (
     <div className={classes.container}>

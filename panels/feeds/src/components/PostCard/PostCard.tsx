@@ -65,7 +65,7 @@ export const PostCard = (props: PostCardProps) => {
     [props.post.reactions]
   );
 
-  const maxCommentDepth = props.maxCommentDepth || 4;
+  const maxCommentDepth = props.maxCommentDepth || 2;
   return (
     <>
       <div className={classes.container}>

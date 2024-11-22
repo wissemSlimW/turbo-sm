@@ -1,11 +1,5 @@
 import { Collections, DB } from "@repo/types";
-import {
-  addDoc,
-  collection,
-  doc,
-  serverTimestamp,
-  updateDoc,
-} from "firebase/firestore";
+import { addDoc, collection, serverTimestamp } from "firebase/firestore";
 import { db } from "../firebase";
 
 export const addItem = <T extends Collections>(props: {

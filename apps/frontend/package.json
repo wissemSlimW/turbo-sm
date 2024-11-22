@@ -10,6 +10,9 @@
   },
   "dependencies": {
     "@feature/feeds": "workspace:*",
+    "@feature/navbar": "workspace:*",
+    "@feature/chat": "workspace:*",
+    "@feature/sidebar": "workspace:*",
     "@panel/layout": "workspace:*",
     "@repo/contexts": "workspace:*",
     "@repo/styles": "workspace:*",

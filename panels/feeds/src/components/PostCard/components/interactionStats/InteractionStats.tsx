@@ -16,12 +16,16 @@ export const InteractionStats = (props: InteractionStatsProps) => {
             <Fragment key={key}>{icon}</Fragment>
           ))}
         </span>
-        <span className={classes.label}>{`${props.totalReactionsCount} ${
-          // props.totalReactionsCount > 1
-          //   ? DICTIONARY.reactions
-          //   : DICTIONARY.reaction
-          ""
-        }`}</span>
+        <span className={classes.label}>
+          {props.totalReactionsCount
+            ? `${props.totalReactionsCount} ${
+                // props.totalReactionsCount > 1
+                //   ? DICTIONARY.reactions
+                //   : DICTIONARY.reaction
+                ""
+              }`
+            : []}
+        </span>
       </span>
       <span className={classes.statsBlock}>
         <span className={classes.label} onClick={props.onCommentsClick}>

@@ -1,5 +1,5 @@
 import { Collections, DB } from "@repo/types";
-import { updateDoc, doc, serverTimestamp } from "firebase/firestore";
+import { doc, serverTimestamp, updateDoc } from "firebase/firestore";
 import { db } from "../firebase";
 
 export const updateItem = <T extends Collections>(props: {
@@ -9,5 +9,5 @@ export const updateItem = <T extends Collections>(props: {
 }) =>
   updateDoc(doc(db, props.collection, props.id), {
     ...props.data,
-    updatedAt: serverTimestamp(),  
+    updatedAt: serverTimestamp(),
   } as Record<string, any>);

@@ -16,8 +16,8 @@ export const useStyles = createUseStyles({
     boxShadow: " 0px 1px 2px 0px rgba(16, 24, 40, 0.05)", // TODO
   },
   image: ({ theme }) => ({
-    backgroundSize: "cover",
-    backgroundPosition: "center",
+    objectFit: "cover",
+    objectPosition: "center",
     width: theme.spacings.full,
     height: theme.spacings.full,
   }),

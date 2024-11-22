@@ -5,7 +5,6 @@
     "@emotion/styled": "^11.11.5",
     "@mui/material": "^5.15.15",
     "@repo/delete-dialog": "workspace:*",
-    "@repo/api": "workspace:*",
     "@repo/emoji-picker-button": "workspace:*",
     "@repo/icons": "workspace:*",
     "@repo/menu-button": "workspace:*",

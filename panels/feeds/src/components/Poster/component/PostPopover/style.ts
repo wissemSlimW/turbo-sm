@@ -47,6 +47,7 @@ export const useStyles = createUseStyles((theme: Theme) => ({
     gap: theme.spacings.XSmall,
   },
   publishBtn: {
+    border: "none",
     fontFamily: theme.fontFamily,
     cursor: "pointer",
     borderRadius: theme.borderRadiuses.medium,

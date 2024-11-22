@@ -41,6 +41,7 @@ export const PosterPopover = (props: PosterPopoverProps) => {
       },
     },
   };
+  const [publishDisabled, setPublishDisabled] = useState(false);
   const [data, setData] = useState<PostDataType>(
     props.data || { files: [], hashtags: [], text: "" }
   );
@@ -75,6 +76,7 @@ export const PosterPopover = (props: PosterPopoverProps) => {
     const newFiles: File[] = data.files
       .filter((f) => !!f.file)
       .map((f) => f.file!);
+    setPublishDisabled(true);
     props.publishAction({
       hashtags: data.hashtags,
       removedFiles,
@@ -82,6 +84,8 @@ export const PosterPopover = (props: PosterPopoverProps) => {
       text: data.text,
       cb: () => {
         props.handleClose();
+        setData({ files: [], hashtags: [], text: "" });
+        setPublishDisabled(false);
       },
     });
   };
@@ -98,7 +102,6 @@ export const PosterPopover = (props: PosterPopoverProps) => {
     else return "doc";
   };
   const handleSetFiles = (files: File[]) => {
-    console.log({ files });
     const _files: PostDataType["files"] = files.map((f) => ({
       id: createRandomId(),
       name: f.name,
@@ -185,9 +188,13 @@ export const PosterPopover = (props: PosterPopoverProps) => {
             ))}
           </div>
         </div>
-        <div className={classes.publishBtn} onClick={handlePublish}>
+        <button
+          disabled={publishDisabled}
+          className={classes.publishBtn}
+          onClick={handlePublish}
+        >
           {DICTIONARY.publishBtn}
-        </div>
+        </button>
       </div>
     </Dialog>
   );

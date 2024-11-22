@@ -14,8 +14,8 @@ export const UserAvatar = ({ size = 41, ...props }: UserAvatarProps) => {
         ]
       : avatarColors[0];
     return {
-      backgroundColor: colors.background,
-      color: colors.color,
+      backgroundColor: colors!.background,
+      color: colors!.color,
     };
   };
   return props.user?.imgUrl ? (

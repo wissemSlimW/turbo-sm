@@ -1,0 +1,20 @@
+{
+  "name": "@panel/sidebar",
+  "version": "0.0.0",
+  "dependencies": {
+    "@emotion/styled": "^11.11.5",
+    "@mui/material": "^5.15.15",
+    "@repo/icons": "workspace:*",
+    "@repo/styles": "workspace:*",
+    "@repo/utils": "workspace:*",
+    "react-dom": "^18.3.1",
+    "react-jss": "^10.9.0",
+    "react": "^18.3.1"
+  },
+  "devDependencies": {
+    "@repo/eslint-config": "workspace:*",
+    "@repo/types": "workspace:*",
+    "@repo/typescript-config": "workspace:*",
+    "@types/react": "^18.3.3"
+  }
+}

@@ -42,12 +42,8 @@ export const ReactionDialog = (props: ReactionDialogProps) => {
         </span>
         <span className={classes.info}>
           <span className={classes.title}>
-            {" "}
             {`${reaction?.firstName} ${reaction?.lastName}`}
           </span>
-          {/* <span className={classes.subtitle}>
-              {props.formatDateDisplay(reaction.createdAt!)}
-            </span> */}
         </span>
       </span>
     );

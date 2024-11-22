@@ -7,7 +7,7 @@ export const useStyles = createUseStyles((theme: Theme) => ({
     flexDirection: "column",
     overflow: "hidden",
     gap: theme.spacings.large,
-    paddingBlock: theme.spacings.small,
+    paddingBlock: theme.spacings.large,
     width: 750, // TODO
     background: theme.colors.backgroundSecondary,
   },

@@ -74,8 +74,8 @@ export const useStyles = createUseStyles((theme: Theme) => ({
     height: theme.spacings.full,
     borderRadius: theme.borderRadiuses.medium,
     overflow: "hidden",
-    backgroundSize: "cover",
-    backgroundPosition: "center",
+    objectFit: "cover",
+    objectPosition: "center",
   },
   VideoContainer: {
     display: "flex",

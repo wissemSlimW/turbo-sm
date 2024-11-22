@@ -27,7 +27,6 @@ export const TextLayout = ({
       />
       <EmojiPickerButton
         setText={(t) => {
-          console.log({ t });
           props.setData((prev) => ({ ...prev, text: prev.text + t }));
         }}
       />

@@ -19,7 +19,6 @@ const gridTypes: Record<number, string> = {
   'area1 area4'`,
 };
 export const ContentLayout = (props: ContentLayoutProps) => {
-  console.log({ m: props.media });
   const theme = useAppTheme();
   const classes = useStyles({ theme, imgsNbs: `+${props.media.length - 5}` });
   return (
@@ -41,10 +40,7 @@ export const ContentLayout = (props: ContentLayoutProps) => {
           style={{ gridArea: `area${i}` }}
         >
           {item.isImage ? (
-            <div
-              className={classes.image}
-              style={{ backgroundImage: `url(${item.path})` }}
-            ></div>
+            <img className={classes.image} src={item.path}></img>
           ) : (
             <span onClick={() => props.handleMediaClick(item._id)}>
               <VideoPlayer video={item.path} full controls={false} />

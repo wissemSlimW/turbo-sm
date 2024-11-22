@@ -10,10 +10,7 @@ export const MediaDisplay = (props: MediaDisplayProps) => {
   const theme = useAppTheme();
   const classes = useStyles({ theme });
   const ImageDisplay = ({ path }: { path: string }) => (
-    <span
-      className={classes.imageContainer}
-      style={{ backgroundImage: `url(${path})` }}
-    ></span>
+    <img className={classes.imageContainer} src={path}></img>
   );
   const VideoDisplay = ({ name }: { name: string }) => (
     <span className={classes.VideoContainer}>
