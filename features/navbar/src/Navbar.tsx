@@ -1,4 +1,4 @@
-import { Navbar as NavbarPanel, NavbarProps } from "@panel/Navbar";
+import { Navbar as NavbarPanel, NavbarProps } from "@panel/navbar";
 import { useUser } from "@repo/api";
 import {
   Gamepad,
