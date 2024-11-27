@@ -1,6 +1,11 @@
 import { CustomDialog } from "@repo/custom-dialog";
 import { DeleteDialogProps } from "./type";
+import { useStyles } from "./style";
+import { useAppTheme } from "@repo/styles";
+import { DICTIONARY } from "./dict";
 export const DeleteDialog = (props: DeleteDialogProps) => {
+  const theme = useAppTheme();
+  const classes = useStyles({ theme });
   return (
     <CustomDialog
       handleClose={props.handleClose}
@@ -10,10 +15,10 @@ export const DeleteDialog = (props: DeleteDialogProps) => {
       }}
       variant="delete"
       title={props.title}
-      fields={<></>
-        // <Typography className={joinClassNames(darkColor, paragraphLargeMedium)}>
-        //   {message || "Voulez-vous vraiment supprimer cet élément ?"}
-        // </Typography>
+      fields={
+        <span className={classes.message}>
+          {props.message || DICTIONARY.message}
+        </span>
       }
     />
   );

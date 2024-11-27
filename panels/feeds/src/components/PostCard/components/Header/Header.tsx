@@ -12,7 +12,7 @@ export const Header = (props: HeaderProps) => {
   const classes = useStyles({ theme });
   const headerActions = useMemo(
     () => [
-      ...(props.user._id === props.post.createdBy
+      ...(true
         ? [
             {
               action: props.updatePost,

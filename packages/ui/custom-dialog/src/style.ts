@@ -7,10 +7,12 @@ export const useStyles = createUseStyles(
       backgroundColor: "#3333334D", // TODO
     },
     dialogBlock: {
-      borderRadius: theme.borderRadiuses.medium,
-      paddingInlineStart: theme.spacings.small,
-      overflow: "visible",
-      backgroundColor: variantColor,
+      "&&&": {
+        borderRadius: theme.borderRadiuses.medium,
+        paddingInlineStart: theme.spacings.small,
+        overflow: "visible",
+        backgroundColor: variantColor,
+      },
     },
     dialogBlockNoMaxWidth: {
       "&&&": { maxWidth: "none", width: "auto" },
@@ -29,12 +31,13 @@ export const useStyles = createUseStyles(
     headerBlock: {
       display: "flex",
       justifyContent: "space-between",
+      gap: theme.spacings.small,
       alignItems: "center",
     },
     title: {
       color: variantColor,
       fontFamily: theme.fontFamily,
-      ...theme.typography.paragraph.large.medium,
+      ...theme.typography.paragraph.medium.medium,
     },
     closeBtnContainer: {
       cursor: "pointer",

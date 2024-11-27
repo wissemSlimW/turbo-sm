@@ -3,6 +3,8 @@ import { joinClassNames } from "@repo/utils";
 import { VideoPlayer } from "../VideoPlayer";
 import { useStyles } from "./style";
 import { ContentLayoutProps } from "./type";
+import { Trash } from "@repo/icons/linear";
+import { useState } from "react";
 
 const gridTypes: Record<number, string> = {
   1: `'area0'`,
@@ -21,6 +23,7 @@ const gridTypes: Record<number, string> = {
 export const ContentLayout = (props: ContentLayoutProps) => {
   const theme = useAppTheme();
   const classes = useStyles({ theme, imgsNbs: `+${props.media.length - 5}` });
+  const [playing, setPlaying] = useState(true);
   return (
     <div
       className={classes.container}
@@ -42,8 +45,20 @@ export const ContentLayout = (props: ContentLayoutProps) => {
           {item.isImage ? (
             <img className={classes.image} src={item.path}></img>
           ) : (
-            <span onClick={() => props.handleMediaClick(item._id)}>
-              <VideoPlayer video={item.path} full controls={false} />
+            <span
+              onClick={() => {
+                props.handleMediaClick(item._id);
+                setPlaying(false);
+              }}
+            >
+              <VideoPlayer
+                video={item.path}
+                full
+                controls={false}
+                playing={playing}
+                loop
+                volume={0}
+              />
             </span>
           )}
         </div>

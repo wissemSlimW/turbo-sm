@@ -1,14 +1,15 @@
-import { Fragment, useMemo } from "react";
 import { Divider } from "@repo/icons/bold";
 import { useAppTheme } from "@repo/styles";
+import { Fragment, useMemo } from "react";
 import { REACTIONS } from "../../constant";
 
+import { CloseHex, Edit, Reply, Trash } from "@repo/icons/linear";
+import { Reaction } from "@repo/types";
 import { getGroupedReaction } from "../../utils";
 import { ReactionButton } from "../ReactionButton";
 import { DICTIONARY } from "./dict";
 import { useStyles } from "./style";
 import { CommentStatsProps } from "./type";
-import { Reaction } from "@repo/types";
 
 export const CommentStats = (props: CommentStatsProps) => {
   const theme = useAppTheme();
@@ -40,39 +41,51 @@ export const CommentStats = (props: CommentStatsProps) => {
           </span>
         }
       />
-      <span
-        className={classes.reactionStats}
-        onClick={() => props.onStatsClick(props.comment.reactions!)}
-      >
-        <span className={classes.reactionContainer}>
-          {reactionTypeStats.map(([key]) => (
-            <Fragment key={key}>
-              {REACTIONS[key as Reaction]?.icon(16)}
-            </Fragment>
-          ))}
+      {Object.keys(props.comment.reactions).length ? (
+        <span
+          className={classes.reactionStats}
+          onClick={() => props.onStatsClick(props.comment.reactions!)}
+        >
+          <span className={classes.reactionContainer}>
+            {reactionTypeStats.map(([key]) => (
+              <Fragment key={key}>
+                {REACTIONS[key as Reaction]?.icon(16)}
+              </Fragment>
+            ))}
+          </span>
+
+          <span className={classes.label}>
+            {Object.keys(props.comment.reactions).length}
+          </span>
         </span>
-        <span className={classes.label}>
-          {Object.keys(props.comment.reactions).length}
-        </span>
-      </span>
+      ) : (
+        []
+      )}
       {props.showReply && (
         <>
           <Divider />
-          <span className={classes.label} onClick={props.onReplyClick}>
-            {DICTIONARY.reply}
+          <span className={classes.iconContainer} onClick={props.onReplyClick}>
+            {/* {DICTIONARY.reply} */}
+            <Reply width={14} height={14} />
           </span>
         </>
       )}
       <Divider />
       <span
-        className={classes.label}
+        className={classes.iconContainer}
         onClick={props.updateMode ? props.onCancelClick : props.onUpdateClick}
       >
-        {props.updateMode ? DICTIONARY.cancel : DICTIONARY.update}
+        {/* {props.updateMode ? DICTIONARY.cancel : DICTIONARY.update} */}
+        {props.updateMode ? (
+          <CloseHex width={16} height={16} />
+        ) : (
+          <Edit width={16} height={16} />
+        )}
       </span>
       <Divider />
-      <span className={classes.label} onClick={props.onDeleteClick}>
-        {DICTIONARY.delete}
+      <span className={classes.iconContainer} onClick={props.onDeleteClick}>
+        {/* {DICTIONARY.delete} */}
+        <Trash width={16} height={16} />
       </span>
     </div>
   );

@@ -1,29 +1,36 @@
-import { Theme } from '@repo/styles'
-import { createUseStyles } from 'react-jss'
+import { Theme } from "@repo/styles";
+import { createUseStyles } from "react-jss";
 
 export const useStyles = createUseStyles((theme: Theme) => ({
   container: {
-    display: 'flex',
-    alignItems: 'center',
+    display: "flex",
+    alignItems: "center",
     gap: theme.spacings.small,
     paddingInline: theme.spacings.large,
   },
   label: {
-    cursor: 'pointer',
+    cursor: "pointer",
     fontFamily: theme.fontFamily,
     color: theme.colors.gray,
     ...theme.typography.paragraph.small.regular,
   },
+  iconContainer: {
+    cursor: "pointer",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    color: theme.colors.gray,
+  },
   reactionStats: {
-    cursor: 'pointer',
-    display: 'flex',
+    cursor: "pointer",
+    display: "flex",
     gap: 5,
-    alignItems: 'center',
+    alignItems: "center",
   },
-  reactionContainer: { display: 'flex', alignItems: 'center' },
+  reactionContainer: { display: "flex", alignItems: "center" },
   reactioncontainer: {
-    display: 'flex',
+    display: "flex",
     gap: theme.spacings.XSmall,
-    alignItems: 'center',
+    alignItems: "center",
   },
-}))
+}));

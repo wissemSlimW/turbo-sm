@@ -25,7 +25,7 @@ export const CarouselDialog = (props: CarouselDialogProps) => {
         <Carousel
           showStatus={false}
           showIndicators={false}
-          showThumbs={true}
+          showThumbs={props.media.length > 1 ? true : false}
           thumbWidth={60}
           className={classes.carousel}
           selectedItem={selected}
@@ -114,7 +114,15 @@ export const CarouselDialog = (props: CarouselDialogProps) => {
                 />
               ) : (
                 <span className={classes.carouselVideoItem}>
-                  {selected === i && <VideoPlayer video={item.path} full />}
+                  {selected === i && (
+                    <VideoPlayer
+                      video={item.path}
+                      full
+                      stopOnUnmount
+                      playing
+                      volume={0.5}
+                    />
+                  )}
                 </span>
               )}
             </Fragment>

@@ -10,8 +10,8 @@ export const SearchLens = ({
     viewBox="0 0 16 16"
     fill="currentColor"
   >
-    <g fill-rule="evenodd" transform="translate(-448 -544)">
-      <g fill-rule="nonzero">
+    <g fillRule="evenodd" transform="translate(-448 -544)">
+      <g fillRule="nonzero">
         <path
           d="M10.743 2.257a6 6 0 1 1-8.485 8.486 6 6 0 0 1 8.485-8.486zm-1.06 1.06a4.5 4.5 0 1 0-6.365 6.364 4.5 4.5 0 0 0 6.364-6.363z"
           transform="translate(448 544)"

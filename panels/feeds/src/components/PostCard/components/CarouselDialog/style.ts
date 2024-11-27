@@ -6,23 +6,28 @@ export const useStyles = createUseStyles((theme: Theme) => ({
   paper: {
     "&&&": {
       borderRadius: theme.borderRadiuses.medium,
+      maxWidth: "max(55dvw, 400px)",
     },
   },
   carousel: {
     width: theme.spacings.full,
+    "& .slider-wrapper>ul": { alignItems: "center" },
     "&>:nth-child(2)>div": {
       margin: theme.spacings.none,
-      "&>ul>li": {
-        aspectRatio: 1,
-        border: "none",
-        position: "relative",
-        borderRadius: theme.borderRadiuses.XMedium,
-        "&:before": {
-          content: '""',
-          position: "absolute",
-          inset: 0,
-          zIndex: 1,
-          backgroundColor: "#0202022e", //TODO
+      "&>ul": {
+        // alignItems: "center",
+        "&>li": {
+          aspectRatio: 1,
+          border: "none",
+          position: "relative",
+          borderRadius: theme.borderRadiuses.XMedium,
+          "&:before": {
+            content: '""',
+            position: "absolute",
+            inset: 0,
+            zIndex: 1,
+            backgroundColor: "#0202022e", //TODO
+          },
         },
       },
     },
@@ -36,6 +41,10 @@ export const useStyles = createUseStyles((theme: Theme) => ({
       // display: "flex",
       textAlign: "center",
       paddingInline: theme.spacings.small,
+      "& .thumb": {
+        padding: theme.spacings.none,
+      },
+      "&> li img": { aspectRatio: 1 },
       "& >li:not(.selected)": {
         cursor: "pointer",
       },
@@ -43,7 +52,6 @@ export const useStyles = createUseStyles((theme: Theme) => ({
   },
   carouselImageItem: {
     width: theme.spacings.full,
-    aspectRatio: 1,
     objectFit: "contain",
     objectPosition: "center",
   },
