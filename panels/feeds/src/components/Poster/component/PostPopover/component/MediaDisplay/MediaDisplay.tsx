@@ -2,28 +2,31 @@ import { AddItem, DocumentCopy, Video } from "@repo/icons/linear";
 import { CloseSquare } from "@repo/icons/animated";
 import { CloseSquare as CloseBtn } from "@repo/icons/bold";
 import { joinClassNames } from "@repo/utils";
-import { DICTIONARY } from "./dict";
 import { useStyles } from "./style";
 import { MediaDisplayProps } from "./type";
 import { useAppTheme } from "@repo/styles";
+import { useLang } from "../../../../../../contexts";
+import { memo } from "react";
 export const MediaDisplay = (props: MediaDisplayProps) => {
   const theme = useAppTheme();
   const classes = useStyles({ theme });
-  const ImageDisplay = ({ path }: { path: string }) => (
+  const ImageDisplay = memo(({ path }: { path: string }) => (
     <img className={classes.imageContainer} src={path}></img>
-  );
-  const VideoDisplay = ({ name }: { name: string }) => (
+  ));
+  const VideoDisplay = memo(({ name }: { name: string }) => (
     <span className={classes.VideoContainer}>
       <Video width={100} height={100} />
       <span className={classes.videoTitle}>{name}</span>
     </span>
-  );
-  const DocumentDisplay = ({ name }: { name: string }) => (
+  ));
+  const DocumentDisplay = memo(({ name }: { name: string }) => (
     <span className={classes.VideoContainer}>
       <DocumentCopy width={100} height={100} />
       <span className={classes.videoTitle}>{name}</span>
     </span>
-  );
+  ));
+
+  const { data: translation } = useLang();
 
   return (
     <div className={classes.container}>
@@ -32,8 +35,8 @@ export const MediaDisplay = (props: MediaDisplayProps) => {
           <AddItem color="white" />
           <span className={classes.uploadBtnLabel}>
             {props.type === "media"
-              ? DICTIONARY.uploadMedia
-              : DICTIONARY.uploadDocs}
+              ? translation.uploadMedia
+              : translation.uploadDocs}
           </span>
         </label>
         <input

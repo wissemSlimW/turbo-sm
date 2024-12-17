@@ -44,7 +44,7 @@ export const useStyles = createUseStyles((theme: Theme) => ({
     },
   },
   mediaContainer: {
-    padding: theme.spacings.XSmall,
+    padding: theme.spacings.XXSmall,
     flex: 1,
     minWidth: "20%",
     maxWidth: "50%",

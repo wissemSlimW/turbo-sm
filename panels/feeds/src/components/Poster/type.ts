@@ -3,7 +3,10 @@ import { ReactElement } from "react";
 import { UserAvatarProps } from "@repo/user-avatar";
 import { PostDataType } from "./component";
 
-export type MenuItemprops = { icon: ReactElement; text: string };
+export type MenuItemprops = {
+  icon: ReactElement;
+  label: "imageOrVideo" | "attachements" | "mention" | "hashtag";
+};
 
 export type PosterProps = {
   data?: PostDataType & { postId: string };

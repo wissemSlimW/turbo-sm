@@ -2,14 +2,16 @@ import { MenuButton } from "@repo/menu-button";
 import { UserAvatar } from "@repo/user-avatar";
 import { CardEdit, More, TrashSquare } from "@repo/icons/linear";
 import { useAppTheme } from "@repo/styles";
-import { DICTIONARY } from "./dict";
 import { useStyles } from "./style";
 import { HeaderProps } from "./type";
 import { useMemo } from "react";
+import { useLang } from "../../../../contexts";
 
 export const Header = (props: HeaderProps) => {
   const theme = useAppTheme();
   const classes = useStyles({ theme });
+  const { data: translation } = useLang();
+
   const headerActions = useMemo(
     () => [
       ...(true
@@ -18,7 +20,7 @@ export const Header = (props: HeaderProps) => {
               action: props.updatePost,
               label: (
                 <span className={classes.menuLabelContainer}>
-                  <CardEdit /> {DICTIONARY.modify}
+                  <CardEdit /> {translation.modify}
                 </span>
               ),
             },
@@ -26,7 +28,7 @@ export const Header = (props: HeaderProps) => {
               action: props.deletePost,
               label: (
                 <span className={classes.menuLabelContainer}>
-                  <TrashSquare /> {DICTIONARY.delete}
+                  <TrashSquare /> {translation.delete}
                 </span>
               ),
             },

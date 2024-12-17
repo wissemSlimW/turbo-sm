@@ -1,10 +1,9 @@
 import { useAppTheme } from "@repo/styles";
 import { joinClassNames } from "@repo/utils";
+import { useState } from "react";
 import { VideoPlayer } from "../VideoPlayer";
 import { useStyles } from "./style";
 import { ContentLayoutProps } from "./type";
-import { Trash } from "@repo/icons/linear";
-import { useState } from "react";
 
 const gridTypes: Record<number, string> = {
   1: `'area0'`,
@@ -22,8 +21,10 @@ const gridTypes: Record<number, string> = {
 };
 export const ContentLayout = (props: ContentLayoutProps) => {
   const theme = useAppTheme();
-  const classes = useStyles({ theme, imgsNbs: `+${props.media.length - 5}` });
-  const [playing, setPlaying] = useState(true);
+  const classes = useStyles({
+    theme: { theme, imgsNbs: `+${props.media.length - 5}` },
+  });
+  const [playing, setPlaying] = useState(false);
   return (
     <div
       className={classes.container}

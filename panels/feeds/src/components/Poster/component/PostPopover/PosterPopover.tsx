@@ -1,5 +1,5 @@
 import { Dialog } from "@mui/material";
-import { useState } from "react";
+import { useCallback, useMemo, useState } from "react";
 import {
   UploadZoneLayout,
   UploadZoneLayoutProps,
@@ -12,61 +12,81 @@ import { menuBtns } from "../../constant";
 import { MenuItemprops } from "../../type";
 import { MediaDisplay } from "./component";
 import { TextLayout } from "./component/TextLayout";
-import { DICTIONARY } from "./dict";
 import { useStyles } from "./style";
 import { PostDataType, PosterPopoverProps } from "./type";
+import { useLang } from "../../../../contexts";
 
 export const PosterPopover = (props: PosterPopoverProps) => {
+  const [publishDisabled, setPublishDisabled] = useState(false);
+  const [data, setData] = useState<PostDataType>(
+    props.data || { files: [], hashtags: [], text: "" }
+  );
+  const theme = useAppTheme();
+  const classes = useStyles({ theme });
+  const { data: translation } = useLang();
   const dropZoneProps: Record<
     "documents" | "media",
     Pick<
       UploadZoneLayoutProps,
       "icon" | "dropText" | "importText" | "acceptableFileTypes"
     >
-  > = {
-    media: {
-      icon: <GalleryAdd />,
-      dropText: DICTIONARY.dropText,
-      importText: DICTIONARY.mediaImportText,
-      acceptableFileTypes: {
-        "image/*": [".jpeg", ".png", ".webp", ".mp4", ".mpeg", ".ogg", ".webm"],
+  > = useMemo(
+    () => ({
+      media: {
+        icon: <GalleryAdd />,
+        dropText: translation.dropText,
+        importText: translation.mediaImportText,
+        acceptableFileTypes: {
+          "image/*": [
+            ".jpeg",
+            ".png",
+            ".webp",
+            ".mp4",
+            ".mpeg",
+            ".ogg",
+            ".webm",
+          ],
+        },
       },
-    },
-    documents: {
-      icon: <Document />,
-      dropText: DICTIONARY.dropText,
-      importText: DICTIONARY.documentImportText,
-      acceptableFileTypes: {
-        "application/doc": [".doc", ".docx", ".pdf", ".txt"],
+      documents: {
+        icon: <Document />,
+        dropText: translation.dropText,
+        importText: translation.documentImportText,
+        acceptableFileTypes: {
+          "application/doc": [".doc", ".docx", ".pdf", ".txt"],
+        },
       },
-    },
-  };
-  const [publishDisabled, setPublishDisabled] = useState(false);
-  const [data, setData] = useState<PostDataType>(
-    props.data || { files: [], hashtags: [], text: "" }
+    }),
+    [translation]
   );
-  const actions: { onClick: () => void }[] = [
-    {
-      onClick: () => {
-        !data.files.length && props.setType("media");
-      },
-    }, // Image/vidéo
-    {
-      onClick: () => {
-        !data.files.length && props.setType("documents");
-      },
-    }, // Attachement
-    { onClick: () => {} }, // Event // TODO
-    { onClick: () => {} }, // Mention // TODO
-    { onClick: () => {} }, // Hashtag // TODO
-  ];
-  const menu: (MenuItemprops & { onClick?: () => void })[] = menuBtns.map(
-    (btn, i) => ({
-      ...btn,
-      ...actions[i],
-    })
+
+  const actions: { onClick: () => void }[] = useMemo(
+    () => [
+      {
+        onClick: () => {
+          !data.files.length && props.setType("media");
+        },
+      }, // Image/vidéo
+      {
+        onClick: () => {
+          !data.files.length && props.setType("documents");
+        },
+      }, // Attachement
+      { onClick: () => {} }, // Event // TODO
+      { onClick: () => {} }, // Mention // TODO
+      { onClick: () => {} }, // Hashtag // TODO
+    ],
+    [data.files.length, props.setType]
   );
-  const handlePublish = () => {
+  const menu: (MenuItemprops & { onClick?: () => void })[] = useMemo(
+    () =>
+      menuBtns.map((btn, i) => ({
+        ...btn,
+        ...actions[i],
+      })),
+    [menuBtns, actions]
+  );
+  const handlePublish = useCallback(() => {
     if (!data.files.length && !data.text.trim() && !data.hashtags.length)
       return;
     const removedFiles: string[] =
@@ -88,31 +108,49 @@ export const PosterPopover = (props: PosterPopoverProps) => {
         setPublishDisabled(false);
       },
     });
-  };
-  const handleRemoveElement = (prevdata: PostDataType, i: number) => {
-    const _data = [...prevdata.files];
-    _data.splice(i, 1);
-    return { ...prevdata, files: _data };
-  };
-  const createRandomId = () =>
-    Math.floor(Math.random() * 1000000 * Math.random() * Date.now()).toString();
-  const getFileType = (file: File) => {
+  }, [
+    data.files,
+    data.text,
+    data.hashtags,
+    props.publishAction,
+    props.handleClose,
+    setData,
+    setPublishDisabled,
+  ]);
+  const handleRemoveElement = useCallback(
+    (prevdata: PostDataType, i: number) => {
+      const _data = [...prevdata.files];
+      _data.splice(i, 1);
+      return { ...prevdata, files: _data };
+    },
+    []
+  );
+  const createRandomId = useCallback(
+    () =>
+      Math.floor(
+        Math.random() * 1000000 * Math.random() * Date.now()
+      ).toString(),
+    []
+  );
+  const getFileType = useCallback((file: File) => {
     if (file.type.startsWith("image")) return "image";
     else if (file.type.startsWith("video")) return "video";
     else return "doc";
-  };
-  const handleSetFiles = (files: File[]) => {
-    const _files: PostDataType["files"] = files.map((f) => ({
-      id: createRandomId(),
-      name: f.name,
-      path: URL.createObjectURL(f),
-      file: f,
-      type: getFileType(f),
-    }));
-    setData((prev) => ({ ...prev, files: [...prev.files, ..._files] }));
-  };
-  const theme = useAppTheme();
-  const classes = useStyles({ theme });
+  }, []);
+  const handleSetFiles = useCallback(
+    (files: File[]) => {
+      const _files: PostDataType["files"] = files.map((f) => ({
+        id: createRandomId(),
+        name: f.name,
+        path: URL.createObjectURL(f),
+        file: f,
+        type: getFileType(f),
+      }));
+      setData((prev) => ({ ...prev, files: [...prev.files, ..._files] }));
+    },
+    [createRandomId, getFileType, setData]
+  );
+
   return (
     <Dialog
       maxWidth={false}
@@ -178,12 +216,12 @@ export const PosterPopover = (props: PosterPopoverProps) => {
           )}
           <div className={classes.menu}>
             <span className={classes.menuLabel}>
-              {DICTIONARY.addToYourPost}
+              {translation.addToYourPost}
             </span>
             {menu.map((item, key) => (
               <span key={key} className={classes.btn} onClick={item.onClick}>
                 <span>{item.icon}</span>
-                <span>{item.text}</span>
+                <span>{translation[item.label]}</span>
               </span>
             ))}
           </div>
@@ -193,7 +231,7 @@ export const PosterPopover = (props: PosterPopoverProps) => {
           className={classes.publishBtn}
           onClick={handlePublish}
         >
-          {DICTIONARY.publishBtn}
+          {translation.publish}
         </button>
       </div>
     </Dialog>

@@ -10,6 +10,7 @@
     "@repo/menu-button": "workspace:*",
     "@repo/scroll-area": "workspace:*",
     "@repo/styles": "workspace:*",
+    "@repo/translation": "workspace:*",
     "@repo/upload-zone-layout": "workspace:*",
     "@repo/user-avatar": "workspace:*",
     "@repo/utils": "workspace:*",

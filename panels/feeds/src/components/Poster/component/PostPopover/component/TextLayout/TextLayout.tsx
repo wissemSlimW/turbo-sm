@@ -1,9 +1,9 @@
 import { EmojiPickerButton } from "@repo/emoji-picker-button";
-import { DICTIONARY } from "./dict";
 import { useStyles } from "./style";
 import { TextLayoutProps } from "./type";
 import { joinClassNames } from "@repo/utils";
 import { useAppTheme } from "@repo/styles";
+import { useLang } from "../../../../../../contexts";
 
 export const TextLayout = ({
   direction = "vertical",
@@ -11,6 +11,7 @@ export const TextLayout = ({
 }: TextLayoutProps) => {
   const theme = useAppTheme();
   const classes = useStyles({ theme });
+  const { data: translation } = useLang();
 
   return (
     <div
@@ -21,7 +22,7 @@ export const TextLayout = ({
     >
       <textarea
         className={classes.textarea}
-        placeholder={DICTIONARY.commentPlaceholder}
+        placeholder={translation.postTextInputPlaceholder}
         value={props.data.text}
         onChange={(e) => props.setData({ ...props.data, text: e.target.value })}
       />

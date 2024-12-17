@@ -6,6 +6,7 @@ export const COLORS = {
   backgroundBackgroundSecondary: "#FAFAFA",
   backgroundSecondary: "#FCFCFC",
   invisible: "transparent",
+  white: "#FFFFFF",
   blue: "#3DA9FC",
   light: "#E7F7FE",
   danger: "#FF493F",

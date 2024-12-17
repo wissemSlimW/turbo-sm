@@ -32,7 +32,8 @@ export const useStyles = createUseStyles((theme: Theme) => ({
 
   menu: {
     display: "flex",
-    gap: theme.spacings.medium,
+    columnGap: theme.spacings.medium,
+    rowGap: theme.spacings.XSmall,
     flexWrap: "wrap",
   },
   menuLabel: {

@@ -7,9 +7,9 @@ import { CloseHex, Edit, Reply, Trash } from "@repo/icons/linear";
 import { Reaction } from "@repo/types";
 import { getGroupedReaction } from "../../utils";
 import { ReactionButton } from "../ReactionButton";
-import { DICTIONARY } from "./dict";
 import { useStyles } from "./style";
 import { CommentStatsProps } from "./type";
+import { useLang } from "../../../../contexts";
 
 export const CommentStats = (props: CommentStatsProps) => {
   const theme = useAppTheme();
@@ -22,6 +22,7 @@ export const CommentStats = (props: CommentStatsProps) => {
       }),
     [props.comment.reactions]
   );
+  const { data: translation } = useLang();
   return (
     <div className={classes.container}>
       <ReactionButton
@@ -35,8 +36,8 @@ export const CommentStats = (props: CommentStatsProps) => {
               : null}
             <span className={classes.label}>
               {props.reactionOnComment
-                ? REACTIONS[props.reactionOnComment]?.label
-                : DICTIONARY.reaction}
+                ? translation[REACTIONS[props.reactionOnComment]?.label]
+                : translation.thumbsUp}
             </span>
           </span>
         }
@@ -65,7 +66,6 @@ export const CommentStats = (props: CommentStatsProps) => {
         <>
           <Divider />
           <span className={classes.iconContainer} onClick={props.onReplyClick}>
-            {/* {DICTIONARY.reply} */}
             <Reply width={14} height={14} />
           </span>
         </>
@@ -75,7 +75,6 @@ export const CommentStats = (props: CommentStatsProps) => {
         className={classes.iconContainer}
         onClick={props.updateMode ? props.onCancelClick : props.onUpdateClick}
       >
-        {/* {props.updateMode ? DICTIONARY.cancel : DICTIONARY.update} */}
         {props.updateMode ? (
           <CloseHex width={16} height={16} />
         ) : (
@@ -84,7 +83,6 @@ export const CommentStats = (props: CommentStatsProps) => {
       </span>
       <Divider />
       <span className={classes.iconContainer} onClick={props.onDeleteClick}>
-        {/* {DICTIONARY.delete} */}
         <Trash width={16} height={16} />
       </span>
     </div>

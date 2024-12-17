@@ -1,11 +1,11 @@
-import { Feeds } from "@feature/feeds";
 import { Chat } from "@feature/chat";
+import { Feeds } from "@feature/feeds";
+import { Navbar } from "@feature/navbar";
+import { Sidebar } from "@feature/sidebar";
 import { Layout } from "@panel/layout";
 import { AppContextProvider } from "@repo/contexts";
 import { themes } from "@repo/styles";
 import { ThemeProvider } from "react-jss";
-import { Navbar } from "@feature/navbar";
-import { Sidebar } from "@feature/sidebar";
 
 const App = () => {
   return (

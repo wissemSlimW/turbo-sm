@@ -4,6 +4,7 @@ import { useAppTheme } from "@repo/styles";
 import { ORDEREDREACTIOJNS, REACTIONS } from "../../constant";
 import { useStyles } from "./style";
 import { ReactionButtonProps } from "./type";
+import { useLang } from "../../../../contexts";
 
 export const ReactionButton = (props: ReactionButtonProps) => {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
@@ -13,6 +14,7 @@ export const ReactionButton = (props: ReactionButtonProps) => {
   };
   const theme = useAppTheme();
   const classes = useStyles({ theme });
+  const { data: translation } = useLang();
   return (
     <span>
       <span onClick={(event) => setAnchorEl(event.currentTarget)}>
@@ -29,7 +31,11 @@ export const ReactionButton = (props: ReactionButtonProps) => {
       >
         <li onClick={handleMenuClose} className={classes.menuItem}>
           {ORDEREDREACTIOJNS.map((key) => (
-            <Tooltip key={key} title={REACTIONS[key].label} placement="top">
+            <Tooltip
+              key={key}
+              title={translation[REACTIONS[key].label]}
+              placement="top"
+            >
               <span
                 onClick={() => props.onClick(key)}
                 className={classes.reactionContainer}

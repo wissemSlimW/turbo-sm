@@ -1,13 +1,13 @@
-import { Fragment } from "react";
-import { Eye } from "@repo/icons/bold";
 import { useAppTheme } from "@repo/styles";
-import { DICTIONARY } from "./dict";
+import { Fragment } from "react";
 import { useStyles } from "./style";
 import { InteractionStatsProps } from "./type";
+import { useLang } from "../../../../contexts";
 
 export const InteractionStats = (props: InteractionStatsProps) => {
   const theme = useAppTheme();
   const classes = useStyles({ theme });
+  const { data: translation } = useLang();
   return (
     <div className={classes.container}>
       <span className={classes.reactionBlock} onClick={props.onReactionsClick}>
@@ -17,31 +17,17 @@ export const InteractionStats = (props: InteractionStatsProps) => {
           ))}
         </span>
         <span className={classes.label}>
-          {props.totalReactionsCount
-            ? `${props.totalReactionsCount} ${
-                // props.totalReactionsCount > 1
-                //   ? DICTIONARY.reactions
-                //   : DICTIONARY.reaction
-                ""
-              }`
-            : []}
+          {props.totalReactionsCount ? `${props.totalReactionsCount}` : []}
         </span>
       </span>
       <span className={classes.statsBlock}>
         <span className={classes.label} onClick={props.onCommentsClick}>
           {`${props.totalCommentsCount} ${
             props.totalCommentsCount > 1
-              ? DICTIONARY.comments
-              : DICTIONARY.comment
+              ? translation.comments
+              : translation.comment
           }`}
         </span>
-        {/* <span className={classes.viewsSection} onClick={props.onViewsClick}>
-          <Eye height={16} width={16} />
-          <span className={classes.label}>
-            {`${props.totalViewsCount} ${props.totalViewsCount > 1 ? DICTIONARY.views : DICTIONARY.view
-              }`}
-          </span>
-        </span> */}
       </span>
     </div>
   );

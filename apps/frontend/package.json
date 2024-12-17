@@ -16,6 +16,7 @@
     "@panel/layout": "workspace:*",
     "@repo/contexts": "workspace:*",
     "@repo/styles": "workspace:*",
+    "@repo/translation": "workspace:*",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-jss": "^10.9.0"

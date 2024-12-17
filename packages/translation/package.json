@@ -1,0 +1,22 @@
+{
+  "name": "@repo/translation",
+  "version": "1.0.0",
+  "dependencies": {
+    "@repo/styles": "workspace:*",
+    "@repo/api": "workspace:*",
+    "@repo/types": "workspace:*",
+    "i18next": "^24.1.0",
+    "i18next-browser-languagedetector": "^8.0.2",
+    "i18next-http-backend": "^3.0.1",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-i18next": "^15.1.4",
+    "react-jss": "^10.9.0"
+  },
+  "devDependencies": {
+    "@repo/eslint-config": "workspace:*",
+    "@repo/typescript-config": "workspace:*",
+    "@types/react": "^18.2.0",
+    "tslib": "^2.5.3"
+  }
+}

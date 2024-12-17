@@ -3,20 +3,21 @@ import { getItem } from "@repo/utils";
 import { CommentPoster } from "../CommentPoster";
 import { CommentStats } from "../CommentStats";
 import { LoadMore } from "../LoadMore";
-import { DICTIONARY } from "./dict";
 import { useStyles } from "./style";
 import { CommentCardProps } from "./type";
 import { UserAvatar } from "@repo/user-avatar";
 import { Send1 } from "@repo/icons/bold";
 import { useAppTheme } from "@repo/styles";
+import { useLang } from "../../../../contexts";
 
 export const CommentCard = (props: CommentCardProps) => {
   const theme = useAppTheme();
   const [updateMode, setUpdateMode] = useState(false);
   const [text, setText] = useState("");
   const classes = useStyles({ theme });
-
+  const [showReplyInput, setShowReplyInput] = useState(false);
   const [limit, setLimit] = useState(0);
+  const { data: translation } = useLang();
   const {
     db: { users: commentsUsers },
     list: comments,
@@ -39,7 +40,6 @@ export const CommentCard = (props: CommentCardProps) => {
       [props.comment._id]
     )
   );
-  const [showReplyInput, setShowReplyInput] = useState(false);
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
     if (text.trim()) {
@@ -52,6 +52,7 @@ export const CommentCard = (props: CommentCardProps) => {
       });
     }
   };
+
   return (
     <div className={classes.container}>
       <span>
@@ -155,7 +156,7 @@ export const CommentCard = (props: CommentCardProps) => {
         <LoadMore
           loadedCount={Math.min(limit, commentsCount)}
           text={
-            limit === 0 ? DICTIONARY.viewReplies : DICTIONARY.viewMoreReplies
+            limit === 0 ? translation.viewReplies : translation.viewMoreReplies
           }
           totalCount={commentsCount}
           onClick={() => {

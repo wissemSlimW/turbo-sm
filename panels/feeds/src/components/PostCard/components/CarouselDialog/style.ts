@@ -11,6 +11,12 @@ export const useStyles = createUseStyles((theme: Theme) => ({
   },
   carousel: {
     width: theme.spacings.full,
+    display: "flex",
+    flexDirection: "column",
+    maxHeight: "max(400px, 85dvh)",
+    "& .slider-wrapper, .carousel-slider, .slider, .slide ": {
+      height: theme.spacings.full,
+    },
     "& .slider-wrapper>ul": { alignItems: "center" },
     "&>:nth-child(2)>div": {
       margin: theme.spacings.none,
@@ -52,6 +58,7 @@ export const useStyles = createUseStyles((theme: Theme) => ({
   },
   carouselImageItem: {
     width: theme.spacings.full,
+    height: theme.spacings.full,
     objectFit: "contain",
     objectPosition: "center",
   },

@@ -13,11 +13,11 @@ import {
   ReactionDialog,
 } from "./components";
 import { REACTIONS } from "./constant";
-import { DICTIONARY } from "./dict";
 import { useStyles } from "./style";
 import { PostCardProps } from "./type";
 import { getGroupedReaction } from "./utils";
 import { ReactionData } from "@repo/types";
+import { useLang } from "../../contexts";
 
 export const PostCard = (props: PostCardProps) => {
   const [limit, setLimit] = useState(
@@ -66,6 +66,7 @@ export const PostCard = (props: PostCardProps) => {
   );
 
   const maxCommentDepth = props.maxCommentDepth || 2;
+  const { data: translation } = useLang();
   return (
     <>
       <div className={classes.container}>
@@ -176,8 +177,8 @@ export const PostCard = (props: PostCardProps) => {
               loadedCount={Math.min(limit, commentsCount)}
               text={
                 limit === 0
-                  ? DICTIONARY.viewComments
-                  : DICTIONARY.viewMoreComments
+                  ? translation.viewComments
+                  : translation.viewMoreComments
               }
               totalCount={commentsCount}
               onClick={() =>

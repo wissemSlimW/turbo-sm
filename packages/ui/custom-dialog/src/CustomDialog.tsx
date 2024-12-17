@@ -3,12 +3,13 @@ import { CloseSquare } from "@repo/icons/animated";
 import { Trash } from "@repo/icons/linear";
 import { useAppTheme } from "@repo/styles";
 import { joinClassNames } from "@repo/utils";
-import { DICTIONARY } from "./dict";
 import { useStyles } from "./style";
 import { CustomDialogProps } from "./type";
 import { VARIANTS } from "./variants.cnst";
+import { LANG, useLang } from "./contexts";
+import { LangProvider } from "@repo/translation";
 
-export const CustomDialog = ({
+const DialogBody = ({
   handleClose,
   handleSubmit,
   title,
@@ -23,7 +24,7 @@ export const CustomDialog = ({
   const classes = useStyles({
     theme: { theme, variantColor: VARIANTS[variant] },
   });
-
+  const { data: translation } = useLang();
   return (
     <Dialog
       open={true}
@@ -81,19 +82,27 @@ export const CustomDialog = ({
                 className={joinClassNames(classes.button, classes.cancelBtn)}
                 onClick={handleClose}
               >
-                {DICTIONARY.cancel}
+                {translation.cancel}
               </button>
               <button
                 disabled={disableSubmit}
                 className={joinClassNames(classes.button, classes.submitBtn)}
                 type="submit"
               >
-                {DICTIONARY.save}
+                {translation.confirm}
               </button>
             </div>
           </div>
         )}
       </form>
     </Dialog>
+  );
+};
+
+export const CustomDialog = (props: CustomDialogProps) => {
+  return (
+    <LangProvider data={LANG}>
+      <DialogBody {...props} />
+    </LangProvider>
   );
 };

@@ -8,9 +8,9 @@ import { ScrollArea } from "@repo/scroll-area";
 import { REACTIONS } from "../../constant";
 import { Reaction } from "@repo/types";
 import { getGroupedReaction } from "../../utils";
-import { DICTIONARY } from "./dict";
 import { useStyles } from "./style";
 import { ReactionDialogProps, UserReaction } from "./type";
+import { useLang } from "../../../../contexts";
 
 export const ReactionDialog = (props: ReactionDialogProps) => {
   const theme = useAppTheme();
@@ -85,6 +85,7 @@ export const ReactionDialog = (props: ReactionDialogProps) => {
     );
   };
 
+  const { data: translation } = useLang();
   return (
     <Dialog
       onClose={props.handleClose}
@@ -94,7 +95,7 @@ export const ReactionDialog = (props: ReactionDialogProps) => {
       PaperProps={{ className: classes.paper }}
     >
       <div className={classes.header}>
-        <h2 className={classes.mainTitle}>{DICTIONARY.reactions}</h2>
+        <h2 className={classes.mainTitle}>{translation.reactions}</h2>
         <span className="close-dialog" onClick={props.handleClose}>
           <CloseSquare
             variant="linear"
@@ -109,7 +110,7 @@ export const ReactionDialog = (props: ReactionDialogProps) => {
             classes.menuItem,
             tabOnDisplay === "all" && classes.selected
           )}
-        >{`${DICTIONARY.all} ${Object.keys(props.reactions).length}`}</span>
+        >{`${translation.all} ${Object.keys(props.reactions).length}`}</span>
         {groupedRactions.map((item) => (
           <span
             key={item[0]}
