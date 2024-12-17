@@ -6,6 +6,7 @@ export const LANG = {
   attachements: "",
   comeBackLater: "",
   comment: "",
+  commentInputPlaceholder: "",
   comments: "",
   delete: "",
   deleteComment: "",
