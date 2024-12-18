@@ -6,6 +6,7 @@
     "@repo/api": "workspace:*",
     "@repo/contexts": "workspace:*",
     "@repo/icons": "workspace:*",
+    "@repo/routes": "workspace:*",
     "@repo/user-avatar": "workspace:*",
     "@repo/utils": "workspace:*",
     "react-dom": "^18.3.1",

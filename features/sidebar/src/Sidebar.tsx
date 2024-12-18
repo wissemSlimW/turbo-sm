@@ -1,6 +1,7 @@
 import { Sidebar as SidebarPanel } from "@panel/sidebar";
 import { useUser } from "@repo/api";
 import { UserAvatar } from "@repo/user-avatar";
+import { ROUTESNAMES } from "@repo/routes";
 
 export const Sidebar = () => {
   const { user } = useUser();
@@ -10,7 +11,7 @@ export const Sidebar = () => {
         {
           menu: [
             {
-              link: "/profile",
+              link: ROUTESNAMES.profile,
               label: `${user.firstName || ""} ${user.lastName || ""}`,
               icon: (
                 <UserAvatar
@@ -23,72 +24,72 @@ export const Sidebar = () => {
               ),
             },
             {
-              link: "/firends",
+              link: ROUTESNAMES.firends,
               label: "Friends",
               icon: <img src={"/icons/people.png"} />,
             },
             {
-              link: "/memories",
+              link: ROUTESNAMES.memories,
               label: "Memories",
               icon: <img src={"/icons/memories.png"} />,
             },
             {
-              link: "/saved",
+              link: ROUTESNAMES.saved,
               label: "Saved",
               icon: <img src={"/icons/saved.png"} />,
             },
             {
-              link: "/groups",
+              link: ROUTESNAMES.groups,
               label: "Groups",
               icon: <img src={"/icons/groups.png"} />,
             },
             {
-              link: "/videos",
+              link: ROUTESNAMES.videos,
               label: "Videos",
               icon: <img src={"/icons/videos.png"} />,
             },
             {
-              link: "/market_place",
+              link: ROUTESNAMES.marketPlace,
               label: "Marketplace",
               icon: <img src={"/icons/marketPlace.png"} />,
             },
             {
-              link: "/feeds",
+              link: ROUTESNAMES.feeds,
               label: "Feeds",
               icon: <img src={"/icons/feeds.png"} />,
             },
             {
-              link: "/events",
+              link: ROUTESNAMES.events,
               label: "Events",
               icon: <img src={"/icons/calendar.png"} />,
             },
             {
-              link: "/messenger",
+              link: ROUTESNAMES.messenger,
               label: "Messenger",
               icon: <img src={"/icons/messenger.png"} />,
             },
             {
-              link: "/messenger_kids",
+              link: ROUTESNAMES.messengerKids,
               label: "Messenger kids",
               icon: <img src={"/icons/messengerKids.png"} />,
             },
             {
-              link: "/birthdays",
+              link: ROUTESNAMES.birthdays,
               label: "Birthdays",
               icon: <img src={"/icons/birthday.png"} />,
             },
             {
-              link: "/reels",
+              link: ROUTESNAMES.reels,
               label: "Reels",
               icon: <img src={"/icons/reels.png"} />,
             },
             {
-              link: "/gaming_videos",
+              link: ROUTESNAMES.gamingVideos,
               label: "Gaming Video",
               icon: <img src={"/icons/gamingVideo.png"} />,
             },
             {
-              link: "/play_games",
+              link: ROUTESNAMES.playGames,
               label: "Play Games",
               icon: <img src={"/icons/playGames.png"} />,
             },

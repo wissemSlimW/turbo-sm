@@ -21,3 +21,4 @@ export { Trash } from "./Trash";
 export { TrashSquare } from "./TrashSquare";
 export { Video } from "./Video";
 export { Videos } from "./Videos";
+export { Play } from "./Play";

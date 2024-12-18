@@ -7,6 +7,7 @@ import {
   People,
   Videos,
 } from "@repo/icons/animated";
+import { ROUTESNAMES } from "@repo/routes";
 import { useMemo, useState } from "react";
 export const Navbar = () => {
   const [search, setSearch] = useState("");
@@ -14,7 +15,7 @@ export const Navbar = () => {
   const LINKS = useMemo(
     (): NavbarProps["links"] => [
       {
-        path: "",
+        path: ROUTESNAMES.home,
         label: "Home",
         icon: (
           <Home
@@ -25,7 +26,7 @@ export const Navbar = () => {
         isActive: true,
       },
       {
-        path: "videos",
+        path: ROUTESNAMES.videos,
         label: "Videos",
         icon: (
           <Videos
@@ -35,7 +36,7 @@ export const Navbar = () => {
         ),
       },
       {
-        path: "market_place",
+        path: ROUTESNAMES.marketPlace,
         label: "Market place",
         icon: (
           <MarketPlace
@@ -45,7 +46,7 @@ export const Navbar = () => {
         ),
       },
       {
-        path: "groups",
+        path: ROUTESNAMES.groups,
         label: "Groups",
         icon: (
           <People
@@ -55,7 +56,7 @@ export const Navbar = () => {
         ),
       },
       {
-        path: "games",
+        path: ROUTESNAMES.games,
         label: "Games",
         icon: (
           <Gamepad
@@ -76,7 +77,7 @@ export const Navbar = () => {
       }}
       links={LINKS}
       sideMenu={[]}
-      logo={{ icon: <></>, link: "" }}
+      logo={{ icon: <></>, link: ROUTESNAMES.home }}
       search={{ value: search, onChange: (val) => setSearch(val) }}
     />
   );

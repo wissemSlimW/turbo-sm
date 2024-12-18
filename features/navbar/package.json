@@ -4,6 +4,7 @@
   "dependencies": {
     "@panel/navbar": "workspace:*",
     "@repo/api": "workspace:*",
+    "@repo/routes": "workspace:*",
     "@repo/contexts": "workspace:*",
     "@repo/icons": "workspace:*",
     "@repo/utils": "workspace:*",

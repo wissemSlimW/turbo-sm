@@ -4,6 +4,7 @@ import { useState } from "react";
 import { VideoPlayer } from "../VideoPlayer";
 import { useStyles } from "./style";
 import { ContentLayoutProps } from "./type";
+import { Play } from "@repo/icons/linear";
 
 const gridTypes: Record<number, string> = {
   1: `'area0'`,
@@ -51,6 +52,7 @@ export const ContentLayout = (props: ContentLayoutProps) => {
                 props.handleMediaClick(item._id);
                 setPlaying(false);
               }}
+              className={classes.videoContainer}
             >
               <VideoPlayer
                 video={item.path}
@@ -60,6 +62,9 @@ export const ContentLayout = (props: ContentLayoutProps) => {
                 loop
                 volume={0}
               />
+              <span className={classes.playIconContainer}>
+                <Play width={80} height={80} />
+              </span>
             </span>
           )}
         </div>

@@ -39,5 +39,17 @@ export const useStyles = createUseStyles(
         ...theme.typography.paragraph.small.semiBold,
       },
     },
+    videoContainer: {
+      position: "relative",
+    },
+    playIconContainer: {
+      position: "absolute",
+      inset: 0,
+      zIndex: 2,
+      display: "flex",
+      justifyContent: "center",
+      alignItems: "center",
+      color: theme.colors.white,
+    },
   })
 );

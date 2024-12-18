@@ -1,5 +1,3 @@
-import { Lang } from "./type";
-
 export const LANG = {
   addToYourPost: "",
   all: "",

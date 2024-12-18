@@ -3,6 +3,7 @@ import { useStyles } from "./style";
 import { SearchBarProps } from "./type";
 import { SearchLens } from "@repo/icons/linear";
 import { useLang } from "../../contexts";
+import { NavigationLink } from "@repo/routes";
 
 export const SeachBar = (props: SearchBarProps) => {
   const theme = useAppTheme();
@@ -10,9 +11,9 @@ export const SeachBar = (props: SearchBarProps) => {
   const { data: translation } = useLang();
   return (
     <div className={classes.container}>
-      <a className={classes.logo} href={props.logo.link}>
+      <NavigationLink className={classes.logo} to={props.logo.link}>
         {props.logo.icon}
-      </a>
+      </NavigationLink>
       <span className={classes.searchInputContainer}>
         <SearchLens height={16} width={16} />
         <input

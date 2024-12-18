@@ -13,8 +13,7 @@ import {
 import { useStyles } from "./style";
 import { FeedsPanelProps, mediaFileType } from "./type";
 import { LangProvider } from "@repo/translation";
-import { LANG } from "./contexts/lang/lang.cnst";
-import { useLang } from "./contexts";
+import { LANG, useLang } from "./contexts";
 
 const PostLoader = () => {
   const theme = useAppTheme();
