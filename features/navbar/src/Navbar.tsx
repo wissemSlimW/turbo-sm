@@ -7,9 +7,10 @@ import {
   People,
   Videos,
 } from "@repo/icons/animated";
-import { ROUTESNAMES } from "@repo/routes";
+import { ROUTESNAMES, useActiveLink } from "@repo/routes";
 import { useMemo, useState } from "react";
 export const Navbar = () => {
+  const activeLink = useActiveLink();
   const [search, setSearch] = useState("");
   const { user } = useUser();
   const LINKS = useMemo(
@@ -19,54 +20,58 @@ export const Navbar = () => {
         label: "Home",
         icon: (
           <Home
-            variant="bold"
+            variant={activeLink === ROUTESNAMES.home ? "bold" : "linear"}
             active={{ variant: "linear", classname: "navbar-link" }}
           />
         ),
-        isActive: true,
+        isActive: activeLink === ROUTESNAMES.home,
       },
       {
         path: ROUTESNAMES.videos,
         label: "Videos",
         icon: (
           <Videos
-            variant="linear"
+            variant={activeLink === ROUTESNAMES.videos ? "bold" : "linear"}
             active={{ variant: "linear", classname: "navbar-link" }}
           />
         ),
+        isActive: activeLink === ROUTESNAMES.videos,
       },
       {
         path: ROUTESNAMES.marketPlace,
         label: "Market place",
         icon: (
           <MarketPlace
-            variant="linear"
+            variant={activeLink === ROUTESNAMES.marketPlace ? "bold" : "linear"}
             active={{ variant: "linear", classname: "navbar-link" }}
           />
         ),
+        isActive: activeLink === ROUTESNAMES.marketPlace,
       },
       {
         path: ROUTESNAMES.groups,
         label: "Groups",
         icon: (
           <People
-            variant="linear"
+            variant={activeLink === ROUTESNAMES.groups ? "bold" : "linear"}
             active={{ variant: "linear", classname: "navbar-link" }}
           />
         ),
+        isActive: activeLink === ROUTESNAMES.groups,
       },
       {
         path: ROUTESNAMES.games,
         label: "Games",
         icon: (
           <Gamepad
-            variant="linear"
+            variant={activeLink === ROUTESNAMES.games ? "bold" : "linear"}
             active={{ variant: "linear", classname: "navbar-link" }}
           />
         ),
+        isActive: activeLink === ROUTESNAMES.games,
       },
     ],
-    []
+    [activeLink]
   );
   return (
     <NavbarPanel

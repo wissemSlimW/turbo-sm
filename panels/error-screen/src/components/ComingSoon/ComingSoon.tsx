@@ -15,7 +15,7 @@ export const ComingSoon = (props: ComingSoonProps) => {
         className={Classes.image}
       />
       <span className={Classes.title}>{translation.pageUnderConstruction}</span>
-      <NavigationLink to={ROUTESNAMES.home} className={Classes.link}>
+      <NavigationLink to={`/${ROUTESNAMES.home}`} className={Classes.link}>
         {translation.headToTheMainPage}
       </NavigationLink>
     </div>
