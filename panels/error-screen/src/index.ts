@@ -1,1 +1,1 @@
-export { ErrorScreen } from "./ErrorSrceen";
+export { ErrorScreen, NotFoundPage } from "./ErrorSrceen";

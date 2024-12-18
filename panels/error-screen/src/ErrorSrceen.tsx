@@ -1,6 +1,6 @@
 import { ROUTESNAMES } from "@repo/routes";
 import { useMemo } from "react";
-import { useLocation } from "react-router";
+import { Navigate, useLocation } from "react-router";
 import { ComingSoon, NotFound } from "./components";
 import { LangProvider } from "@repo/translation";
 import { LANG } from "./contexts";
@@ -15,10 +15,16 @@ export const ErrorScreen = () => {
   console.log(check);
   return (
     <LangProvider data={LANG}>
-      {check === "notFound" && <NotFound imageUrl="/pageNotFound.webp" />}
+      {check === "notFound" && <Navigate to={"/404"} />}
       {check === "underDevelopment" && (
         <ComingSoon imageUrl="/pageUnderConstruction.webp" />
       )}
     </LangProvider>
   );
 };
+
+export const NotFoundPage = () => (
+  <LangProvider data={LANG}>
+    <NotFound imageUrl="pageNotFound.webp" />
+  </LangProvider>
+);

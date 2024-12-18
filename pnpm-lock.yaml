@@ -47,6 +47,9 @@ importers:
       '@repo/contexts':
         specifier: workspace:*
         version: link:../../packages/contexts
+      '@repo/routes':
+        specifier: workspace:*
+        version: link:../../packages/routes
       '@repo/styles':
         specifier: workspace:*
         version: link:../../packages/styles
